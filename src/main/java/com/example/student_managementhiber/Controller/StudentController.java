@@ -19,6 +19,11 @@ public class StudentController {
         return studentService.createStudent(student,department_id);
     }
 
+    @PutMapping("/{student_id}/passport/{passport_id}")
+    public  Student assignPassport(@PathVariable Long student_id,@PathVariable Long passport_id){
+        return studentService.assignPassport(student_id,passport_id);
+    }
+
     @PostMapping("/bulk")
     public  List<Student> createStudents(@RequestBody List<Student> students,@RequestParam long department_id){
         return studentService.createStudents(students,department_id);
