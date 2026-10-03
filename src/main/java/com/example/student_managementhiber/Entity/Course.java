@@ -1,6 +1,8 @@
 package com.example.student_managementhiber.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "courses")
@@ -9,37 +11,23 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String courseName;
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    public Course(){
-
-    }
-    public Course(String courseName){
-        this.courseName = courseName;
+    public void setCourseName(String name) {
+        this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
+    private List<Student> students = new ArrayList<>();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getCourseName() {
-        return courseName;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", courseName='" + courseName + '\'' +
-                '}';
-    }
+    public List<Student> getStudents() { return students; }
+    public void setStudents(List<Student> students) { this.students = students; }
 }

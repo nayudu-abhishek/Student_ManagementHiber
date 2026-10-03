@@ -1,5 +1,6 @@
 package com.example.student_managementhiber.Controller;
 
+import com.example.student_managementhiber.Entity.Course;
 import com.example.student_managementhiber.Entity.Student;
 import com.example.student_managementhiber.Services.StudentService;
 import org.springframework.web.bind.annotation.*;
@@ -39,4 +40,8 @@ public class StudentController {
 
     }
 
+    @GetMapping("/{studentId}/courses")
+    public List<Course> getStudentCourses(@PathVariable Long studentId) {
+        return studentService.getStudentCourses(studentId);
+    }
 }

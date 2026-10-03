@@ -3,10 +3,12 @@ package com.example.student_managementhiber.Services;
 import com.example.student_managementhiber.Entity.Department;
 import com.example.student_managementhiber.Entity.Passport;
 import com.example.student_managementhiber.Entity.Student;
+import com.example.student_managementhiber.Entity.Course;
 import com.example.student_managementhiber.Repository.DepartmentRepository;
 import com.example.student_managementhiber.Repository.PassportRepository;
 import com.example.student_managementhiber.Repository.StudentRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 @Service
 public class StudentService {
@@ -49,6 +51,11 @@ public List<Student> createStudents(List<Student> students,Long department_id){
         return studentRepository.findById(id)
                 .orElseThrow(() ->
                 new RuntimeException("Id not found "));
+    }
+    public List<Course> getStudentCourses(Long studentId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+        return student.getCourses();
     }
 
 
