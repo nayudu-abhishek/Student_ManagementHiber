@@ -1,6 +1,7 @@
 package com.example.student_managementhiber.Entity;
 
 import jakarta.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "Students")
@@ -25,6 +26,12 @@ public class Student {
     @JoinColumn(name = "passport_id")
     private Passport passport;
 
+    @ManyToMany
+    @JoinTable(name = "student_course",
+            joinColumns =  @JoinColumn(name = "student_id"),
+        inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private List<Course> course;
 
     public Student(){
 
