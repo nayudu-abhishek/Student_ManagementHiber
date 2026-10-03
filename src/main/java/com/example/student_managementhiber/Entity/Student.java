@@ -21,6 +21,11 @@ public class Student {
     @JoinColumn(name = "department_id")
     private Department department;
 
+    @OneToOne
+    @JoinColumn(name = "passport_id")
+    private Passport passport;
+
+
     public Student(){
 
     }
@@ -69,6 +74,15 @@ public class Student {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
 
     @Override
     public String toString() {
